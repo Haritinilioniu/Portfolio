@@ -131,6 +131,13 @@
     <script>
         function toggleMenu() { document.getElementById('sidebar').classList.toggle('open'); }
     </script>
+<!-- Full-Screen Interactive Lightbox Overlay Panel -->
+<div id="lightboxOverlay" class="lightbox">
+    <span class="close-btn" onclick="closeLightbox()">&times;</span>
+    <span class="arrow-btn prev-btn" onclick="changeImage(-1)">&#10094;</span>
+    <img id="lightboxImg" src="" alt="Expanded View">
+    <span class="arrow-btn next-btn" onclick="changeImage(1)">&#10095;</span>
+</div>
 
 </body>
 </html>
