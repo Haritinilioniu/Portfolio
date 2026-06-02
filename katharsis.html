@@ -38,9 +38,59 @@
         .meta-label { color: #888888; font-weight: 300; }
         .meta-value { color: #ffffff; font-weight: bold; }
 
-        /* Bottom Row 3-Column Image Grid */
-        .image-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 20px; width: 100%; }
-        @media (max-width: 768px) { .image-gallery { grid-template-columns: 1fr; } }
+        /* Container Layout */
+.image-gallery-container {
+    max-width: 1400px;
+    margin: 40px auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+}
+
+/* Base configuration for rows */
+.gallery-row {
+    display: grid;
+    gap: 20px;
+    width: 100%;
+}
+
+/* Top Row Layout Proportions */
+.row-top {
+    grid-template-columns: 1.5fr 1fr 1.5fr; 
+}
+
+/* Bottom Row Layout Proportions */
+.row-bottom {
+    grid-template-columns: 1fr 2fr 1fr; 
+}
+
+/* Individual Image Cards sizes */
+.gallery-card {
+    background: #000000;
+    overflow: hidden;
+    height: 450px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+/* Mobile Screen Responsiveness */
+@media (max-width: 900px) {
+    .row-top, .row-bottom {
+        grid-template-columns: 1fr; 
+    }
+    .gallery-card {
+        height: 300px; 
+    }
+}
+
 
         /* Individual Artwork Box */
         .gallery-card { background: #000000; overflow: hidden; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; }
@@ -89,23 +139,36 @@
         </div>
 
       <!-- Horizontal Image Showcase Grid (Now fits all 5 images perfectly) -->
-<div class="image-gallery" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
-    <div class="gallery-card">
-        <img src="katharsis_d1.jpg" alt="Katharsis Detail 1">
+<!-- Asymmetric Multi-Row Large Image Gallery -->
+<div class="image-gallery-container">
+    <!-- Top Row: 3 Images (Wide, Portrait, Wide) -->
+    <div class="gallery-row row-top">
+        <div class="gallery-card wide">
+            <img src="katharsis_d1.jpg" alt="Detail 1">
+        </div>
+        <div class="gallery-card portrait">
+            <img src="katharsis.jpg" alt="Main Portrait">
+        </div>
+        <div class="gallery-card wide">
+            <img src="katharsis_d2.jpg" alt="Detail 2">
+        </div>
     </div>
-    <div class="gallery-card portrait-fit">
-        <img src="katharsis.jpg" alt="Katharsis Main View">
-    </div>
-    <div class="gallery-card">
-        <img src="katharsis_d2.jpg" alt="Katharsis Detail 2">
-    </div>
-    <div class="gallery-card">
-        <img src="katharsis_d3.jpg" alt="Katharsis Detail 3">
-    </div>
-    <div class="gallery-card">
-        <img src="katharsis_d4.jpg" alt="Katharsis Detail 4">
+
+    <!-- Bottom Row: 3 Images (Portrait, Ultra-Wide Center, Portrait) -->
+    <div class="gallery-row row-bottom">
+        <div class="gallery-card portrait">
+            <img src="katharsis_d3.jpg" alt="Detail 3">
+        </div>
+        <div class="gallery-card center-wide">
+            <img src="katharsis_d4.jpg" alt="Detail 4">
+        </div>
+        <div class="gallery-card portrait">
+            <img src="katharsis_d5.jpg" alt="Detail 5"> 
+            <!-- Note: If you only have 5 total images, you can delete this card or reuse an image -->
+        </div>
     </div>
 </div>
+
 
         <!-- Toggle Action Menu Drawer Script -->
     <script>
