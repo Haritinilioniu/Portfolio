@@ -20,7 +20,7 @@
         nav a:hover { color: #888888; }
 
         /* Project Layout Container */
-        .project-container { max-width: 1200px; margin: 40px auto 0 auto; width: 100%; }
+        .project-container { max-width: 1400px; margin: 40px auto 0 auto; width: 100%; }
 
         /* Title Area */
         h1.project-title { font-size: 2.8rem; font-weight: 400; text-transform: uppercase; text-align: left; margin-bottom: 50px; letter-spacing: 2px; }
@@ -39,66 +39,55 @@
         .meta-value { color: #ffffff; font-weight: bold; }
 
         /* Container Layout */
-.image-gallery-container {
-    max-width: 1400px;
-    margin: 40px auto;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 20px; 
-}
+        .image-gallery-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px; 
+        }
 
-/* Base configuration for rows */
-.gallery-row {
-    display: grid;
-    gap: 20px;
-    width: 100%;
-}
+        /* Base configuration for rows */
+        .gallery-row {
+            display: grid;
+            gap: 20px;
+            width: 100%;
+        }
 
-/* Top Row Layout Proportions */
-.row-top {
-    grid-template-columns: 1.5fr 1fr 1.5fr; 
-}
+        /* Top Row Layout Proportions */
+        .row-top {
+            grid-template-columns: 1.5fr 1fr 1.5fr; 
+        }
 
-/* Bottom Row Layout Proportions */
-/* Bottom Row Layout Proportions for 2 images */
-.row-bottom {
-    grid-template-columns: 1fr 2fr; /* 1/3 width for the side view, 2/3 width for the wide texture */
-}
+        /* Bottom Row Layout Proportions adjusted for 2 images */
+        .row-bottom {
+            grid-template-columns: 1fr 2fr; 
+        }
 
-/* Individual Image Cards sizes */
-.gallery-card {
-    background: #000000;
-    overflow: hidden;
-    height: 450px; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+        /* Individual Image Cards sizes */
+        .gallery-card {
+            background: #000000;
+            overflow: hidden;
+            height: 450px; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-.gallery-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
-}
+        .gallery-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+        }
 
-/* Mobile Screen Responsiveness */
-@media (max-width: 900px) {
-    .row-top, .row-bottom {
-        grid-template-columns: 1fr; 
-    }
-    .gallery-card {
-        height: 300px; 
-    }
-}
-
-
-        /* Individual Artwork Box */
-        .gallery-card { background: #000000; overflow: hidden; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; }
-        .gallery-card img { width: 100%; height: 100%; object-fit: cover; }
-        
-        /* Middle card needs a vertical portrait constraint if using custom images */
-        .gallery-card.portrait-fit img { object-fit: contain; }
+        /* Mobile Screen Responsiveness */
+        @media (max-width: 900px) {
+            .row-top, .row-bottom {
+                grid-template-columns: 1fr; 
+            }
+            .gallery-card {
+                height: 300px; 
+            }
+        }
     </style>
 </head>
 <body>
@@ -121,12 +110,10 @@
         <h1 class="project-title">Katharsis</h1>
 
         <div class="project-info">
-            <!-- Project Narrative (Left Side) -->
             <div class="project-description">
                 Katharsis is a piece about fragility and resistance. Evoking a sense of vanity, the sculpture is made out of hard, heavy and sharp metal pieces that hold each other with "chains" of wool. Each metal piece holds the one beneath it, the piece that holds all of them is the most ruined, and gradually, each plate seems to deteriorate. Until the last one, that is in the best condition, shining like a mirror. Untouched, waiting to deteriorate.
             </div>
 
-            <!-- Material & Year Specifications (Right Side) -->
             <div class="project-meta">
                 <div class="meta-row">
                     <span class="meta-label">Material</span>
@@ -139,40 +126,35 @@
             </div>
         </div>
 
-      <!-- Asymmetric Multi-Row Large Image Gallery -->
-<div class="image-gallery-container">
-    <!-- Top Row: 3 Images (Wide, Portrait, Wide) -->
-    <div class="gallery-row row-top">
-        <div class="gallery-card wide">
-            <!-- This is the white wool close up -->
-            <img src="katharsis_d1.jpg" alt="Detail 1">
+        <!-- Asymmetric Multi-Row Large Image Gallery -->
+        <div class="image-gallery-container">
+            <!-- Top Row: 3 Images (Wide, Portrait, Wide) -->
+            <div class="gallery-row row-top">
+                <div class="gallery-card">
+                    <img src="katharsis_d1.jpg" alt="Detail 1">
+                </div>
+                <div class="gallery-card">
+                    <img src="katharsis.jpg" alt="Main Portrait">
+                </div>
+                <div class="gallery-card">
+                    <img src="katharsis_d2.jpg" alt="Detail 2">
+                </div>
+            </div>
+
+            <!-- Bottom Row: 2 Images (Left Hanging View, Center Close Up Macro) -->
+            <div class="gallery-row row-bottom">
+                <div class="gallery-card">
+                    <img src="katharsis_d3.jpg" alt="Detail 3">
+                </div>
+                <div class="gallery-card">
+                    <img src="katharsis_d4.jpg" alt="Detail 4">
+                </div>
+            </div>
         </div>
-        <div class="gallery-card portrait">
-            <!-- This is the vertical hanging metal panel strip -->
-            <img src="katharsis.jpg" alt="Main Portrait">
-        </div>
-        <div class="gallery-card wide">
-            <!-- This is the dark burned metal sheet layout -->
-            <img src="katharsis_d2.jpg" alt="Detail 2">
-        </div>
+
     </div>
 
-    <!-- Bottom Row: 2 Images (Left Hanging View, Center Close Up Macro) -->
-    <div class="gallery-row row-bottom">
-        <div class="gallery-card portrait">
-            <!-- This is the sculpture hanging in the room (left side) -->
-            <img src="katharsis_d3.jpg" alt="Detail 3">
-        </div>
-        <div class="gallery-card center-wide">
-            <!-- This is the texture detail close up -->
-            <img src="katharsis_d4.jpg" alt="Detail 4">
-        </div>
-        <!-- REMOVED the broken 5th image card since you only have 4 files -->
-    </div>
-</div>
-
-
-        <!-- Toggle Action Menu Drawer Script -->
+    <!-- Toggle Action Menu Drawer Script -->
     <script>
         function toggleMenu() { document.getElementById('sidebar').classList.toggle('open'); }
     </script>
