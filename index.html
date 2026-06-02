@@ -6,23 +6,37 @@
     <title>My Professional Portfolio</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0b0f19; color: #f3f4f6; line-height: 1.6; padding: 40px 20px; }
-        .container { max-width: 800px; margin: 0 auto; }
-        header { text-align: center; margin-bottom: 60px; }
-        h1 { font-size: 2.5rem; margin-bottom: 10px; color: #ffffff; }
+        body { font-family: "Open Sans", sans-serif; background: #0b0f19; color: #f3f4f6; line-height: 1.6; padding-top: 100px; }
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        
+        /* Modern Navigation Menu based on your design */
+        nav { position: fixed; top: 0; left: 0; width: 100%; background: #111827; border-bottom: 1px solid #1e293b; display: flex; justify-content: center; padding: 20px 0; z-index: 1000; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { color: #f3f4f6; text-decoration: none; font-size: 1rem; font-weight: 300; transition: color 0.2s; }
+        .nav-links a:hover { color: #3b82f6; border-bottom: 2px solid #3b82f6; }
+        
+        header { text-align: center; margin: 40px 0 60px 0; }
+        h1 { font-size: 2.5rem; margin-bottom: 10px; color: #3b82f6; }
         .subtitle { font-size: 1.2rem; color: #9ca3af; }
-        section { margin-bottom: 50px; }
+        section { margin-bottom: 60px; padding-top: 40px; }
         h2 { font-size: 1.8rem; margin-bottom: 20px; border-bottom: 2px solid #1e293b; padding-bottom: 8px; color: #f3f4f6; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
         .card { background: #111827; border: 1px solid #1e293b; padding: 20px; border-radius: 8px; transition: transform 0.2s; }
-        .card:hover { transform: translateY(-5px); border-color: #ffffff; }
-        .card h3 { color: #ffffff; margin-bottom: 10px; }
+        .card:hover { transform: translateY(-5px); border-color: #3b82f6; }
+        .card h3 { color: #3b82f6; margin-bottom: 10px; }
         .card p { color: #9ca3af; font-size: 0.95rem; }
-        a { color: #3b82f6; text-decoration: none; }
-        a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
+
+    <!-- Navigation Menu -->
+    <nav>
+        <div class="nav-links">
+            <a href="#projects">Portfolio</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
 
     <div class="container">
         <header>
@@ -32,7 +46,7 @@
 
         <section id="about">
             <h2>About Me</h2>
-            <p>Write a brief, interesting introduction about yourself here. Mention your core skills, what technologies you love using, and what kind of problems you enjoy solving.</p>
+            <p>Write a brief introduction about yourself here. Explain your skills and what technologies you use.</p>
         </section>
 
         <section id="projects">
@@ -40,18 +54,18 @@
             <div class="grid">
                 <div class="card">
                     <h3>Project One</h3>
-                    <p>A short description of what this project does, the tools you used to build it, and a link to check it out.</p>
+                    <p>A short description of what this project does and the tools you used to build it.</p>
                 </div>
                 <div class="card">
                     <h3>Project Two</h3>
-                    <p>A short description of what this project does, the tools you used to build it, and a link to check it out.</p>
+                    <p>A short description of what this project does and the tools you used to build it.</p>
                 </div>
             </div>
         </section>
 
         <section id="contact">
             <h2>Contact</h2>
-            <p>Feel free to reach out via email at <a href="mailto:your.email@example.com">your.email@example.com</a> or find me on <a href="https://linkedin.com" target="_blank">LinkedIn</a>.</p>
+            <p>Feel free to reach out via email at your.email@example.com.</p>
         </section>
     </div>
 
