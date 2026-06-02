@@ -135,6 +135,20 @@
         function toggleMenu() {
             document.getElementById('sidebar').classList.toggle('open');
         }
+        // Blocks right-clicking to prevent "Save Image As..."
+document.addEventListener('contextmenu', (e) => {
+    if (e.target.tagName === 'IMG') {
+        e.preventDefault();
+    }
+});
+
+// Blocks dragging images directly to the desktop or browser tabs
+document.addEventListener('dragstart', (e) => {
+    if (e.target.tagName === 'IMG') {
+        e.preventDefault();
+    }
+});
+
     </script>
 
 </body>
