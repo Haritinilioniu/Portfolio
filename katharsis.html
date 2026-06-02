@@ -88,22 +88,26 @@
             </div>
         </div>
 
-        <!-- Horizontal 3-Image Showcase Row -->
-        <div class="image-gallery">
-            <div class="gallery-card">
-                <img src="katharsis_d1">
-            </div>
-            <div class="gallery-card portrait-fit">
-                <img src="https://placeholder.com" alt="Katharsis Detail 2">
-            </div>
-            <div class="gallery-card">
-                <img src="https://placeholder.com" alt="Katharsis Detail 3">
-            </div>
-        </div>
-
+      <!-- Horizontal Image Showcase Grid (Now fits all 5 images perfectly) -->
+<div class="image-gallery" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+    <div class="gallery-card">
+        <img src="katharsis_d1.jpg" alt="Katharsis Detail 1">
     </div>
+    <div class="gallery-card portrait-fit">
+        <img src="katharsis.jpg" alt="Katharsis Main View">
+    </div>
+    <div class="gallery-card">
+        <img src="katharsis_d2.jpg" alt="Katharsis Detail 2">
+    </div>
+    <div class="gallery-card">
+        <img src="katharsis_d3.jpg" alt="Katharsis Detail 3">
+    </div>
+    <div class="gallery-card">
+        <img src="katharsis_d4.jpg" alt="Katharsis Detail 4">
+    </div>
+</div>
 
-    <!-- Toggle Action Menu Drawer Script -->
+        <!-- Toggle Action Menu Drawer Script -->
     <script>
         function toggleMenu() { document.getElementById('sidebar').classList.toggle('open'); }
     </script>
