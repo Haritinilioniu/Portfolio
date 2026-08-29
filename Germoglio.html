@@ -61,7 +61,7 @@
         .detail-label { color: #aaaaaa; font-weight: 300; }
         .detail-value { color: #ffffff; font-weight: 600; text-align: right; }
 
-        /* --- RESTORED INITIAL IMAGE FRAMES --- */
+        /* --- GALLERY CONTAINER (ORIGINAL PHOTO FRAME SETUP) --- */
         .image-gallery { 
             max-width: 1200px; 
             margin: 0 auto 100px auto; 
@@ -69,29 +69,29 @@
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
             gap: 30px; 
+            align-items: center; 
         }
 
-        .artwork-card { 
-            position: relative; 
-            background: #111111; 
-            border: 1px solid #222222; 
-            border-radius: 4px; 
-            overflow: hidden; 
-            aspect-ratio: 16/9; 
+        .gallery-card { 
+            width: 100%; 
+            height: auto; 
+            background: transparent; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
         }
 
-        .artwork-card img { 
+        /* Displays images in 100% original, uncropped dimensions */
+        .image-gallery img { 
             width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
+            height: auto; 
+            object-fit: contain; 
+            display: block; 
             cursor: pointer;
             transition: transform 0.3s ease, opacity 0.2s ease;
         }
 
-        .artwork-card img:hover {
+        .image-gallery img:hover {
             transform: scale(1.02);
             opacity: 0.9;
         }
@@ -215,17 +215,17 @@
         </div>
     </section>
 
-    <!-- Interactive Gallery Images (Uses Initial Frame Layout) -->
+    <!-- Interactive Gallery Images -->
     <main class="image-gallery">
-        <div class="artwork-card">
+        <div class="gallery-card">
             <img src="Germoglio.jpg" alt="Germoglio - Sprout View 1">
         </div>
-        <div class="artwork-card">
+        <div class="gallery-card">
             <img src="germoglio_det.jpg" alt="Germoglio - Sprout View 2">
         </div>
     </main>
 
-    <!-- Full-Screen Interactive Lightbox Overlay Panel -->
+    <!-- Full-Screen Lightbox Overlay Panel -->
     <div id="lightboxOverlay" class="lightbox">
         <span class="close-btn" onclick="closeLightbox()">&times;</span>
         <span class="arrow-btn prev-btn" onclick="changeImage(-1)">&#10094;</span>
@@ -259,12 +259,14 @@
         let galleryImages = [];
 
         document.addEventListener("DOMContentLoaded", () => {
-            const imagesInGallery = document.querySelectorAll(".artwork-card img");
-            galleryImages = Array.from(imagesInGallery).map(img => img.src);
+            // Target any image within the main image-gallery section
+            const imagesInGallery = document.querySelectorAll(".image-gallery img");
+            galleryImages = Array.from(imagesInGallery).map(img => img.getAttribute("src"));
             
             imagesInGallery.forEach((img, index) => {
-                img.style.cursor = "pointer";
-                img.onclick = () => openLightbox(index);
+                img.addEventListener("click", () => {
+                    openLightbox(index);
+                });
             });
         });
 
@@ -309,6 +311,7 @@
             document.getElementById("lightboxImg").src = galleryImages[currentImgIndex];
         }
 
+        // Keyboard Navigation Support
         document.addEventListener("keydown", (e) => {
             if (e.key === "Escape") closeLightbox();
             if (e.key === "ArrowLeft") changeImage(-1);
