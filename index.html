@@ -28,14 +28,37 @@
         /* Content Sections */
         .section-divider { font-size: 1.2rem; font-weight: 300; color: #ffffff; margin: 60px 0 40px 0; letter-spacing: 1px; }
 
-        /* Responsive Portfolio Grid Layout */
-        .portfolio-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr; gap: 20px; width: 100%; }
-        .portfolio-grid.photography-grid { grid-template-columns: 1fr 1.5fr; } /* Variations for photography section */
-        @media (max-width: 768px) { .portfolio-grid, .portfolio-grid.photography-grid { grid-template-columns: 1fr; } }
+       /* Responsive Portfolio Grid Layout */
+.portfolio-grid { 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    display: grid; 
+    grid-template-columns: 1.5fr 1fr; 
+    gap: 20px; 
+    width: 100%; 
+    align-items: start; /* Prevents cards from stretching vertically to match adjacent columns */
+}
+.portfolio-grid.photography-grid { grid-template-columns: 1fr 1.5fr; }
+@media (max-width: 768px) { .portfolio-grid, .portfolio-grid.photography-grid { grid-template-columns: 1fr; } }
 
-        /* Image Display Cards */
-        .artwork-card { position: relative; background: #111111; border: 1px solid #222222; border-radius: 4px; overflow: hidden; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; }
-        .artwork-card img { width: 100%; height: 100%; object-fit: cover; }
+/* Image Display Cards (Natural Aspect Ratio) */
+.artwork-card { 
+    position: relative; 
+    background: transparent; 
+    border: 1px solid #222222; 
+    border-radius: 4px; 
+    overflow: hidden; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    width: 100%;
+}
+.artwork-card img { 
+    width: 100%; 
+    height: auto; 
+    object-fit: contain; 
+    display: block; 
+}
         
         /* Text overlay on top of images */
         .overlay-text { position: absolute; bottom: 20px; left: 20px; color: #ffffff; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; background: rgba(0,0,0,0.5); padding: 5px 10px; border-radius: 2px; }
