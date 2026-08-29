@@ -7,7 +7,16 @@
     <style>
         /* Base Reset */
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #000000; color: #ffffff; padding: 40px 20px 0 20px; text-align: center; display: flex; flex-direction: column; min-height: 100vh; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            background: #000000; 
+            color: #ffffff; 
+            padding: 40px 20px 0 20px; 
+            text-align: center; 
+            display: flex; 
+            flex-direction: column; 
+            min-height: 100vh; 
+        }
 
         /* Hamburger Menu Icon */
         .menu-icon { position: fixed; top: 30px; right: 30px; cursor: pointer; display: flex; flex-direction: column; gap: 6px; z-index: 1001; }
@@ -25,46 +34,92 @@
         h1 { font-size: 3rem; font-weight: 400; margin-bottom: 40px; letter-spacing: 1px; }
         .section-title { font-size: 1.5rem; font-weight: 300; color: #ffffff; margin-bottom: 40px; }
 
-        /* Content Sections */
-        .section-divider { font-size: 1.2rem; font-weight: 300; color: #ffffff; margin: 60px 0 40px 0; letter-spacing: 1px; }
+        /* --- MASONRY GRID LAYOUT CSS --- */
+        .portfolio-container {
+            max-width: 1400px;
+            margin: 0 auto 60px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+        }
 
-       /* Responsive Portfolio Grid Layout */
-.portfolio-grid { 
-    max-width: 1200px; 
-    margin: 0 auto; 
-    display: grid; 
-    grid-template-columns: 1.5fr 1fr; 
-    gap: 20px; 
-    width: 100%; 
-    align-items: start; /* Prevents cards from stretching vertically to match adjacent columns */
-}
-.portfolio-grid.photography-grid { grid-template-columns: 1fr 1.5fr; }
-@media (max-width: 768px) { .portfolio-grid, .portfolio-grid.photography-grid { grid-template-columns: 1fr; } }
+        /* Standard Row (Big Left, Small Right) */
+        .portfolio-grid { 
+            display: grid; 
+            grid-template-columns: 1.8fr 1fr; 
+            gap: 20px; 
+            width: 100%; 
+        }
 
-/* Image Display Cards (Natural Aspect Ratio) */
-.artwork-card { 
-    position: relative; 
-    background: transparent; 
-    border: 1px solid #222222; 
-    border-radius: 4px; 
-    overflow: hidden; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    width: 100%;
-}
-.artwork-card img { 
-    width: 100%; 
-    height: auto; 
-    object-fit: contain; 
-    display: block; 
-}
-        
+        /* Reversed Row (Small Left, Big Right) */
+        .portfolio-grid.reverse { 
+            grid-template-columns: 1fr 1.8fr; 
+        }
+
+        /* Vertical Stack Column */
+        .stacked-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            height: 100%;
+        }
+
+        /* Image Cards */
+        .artwork-card { 
+            position: relative; 
+            display: block;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; 
+            text-decoration: none;
+            background: #111111; 
+        }
+
+        .artwork-card img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            display: block; 
+            transition: transform 0.4s ease, opacity 0.3s ease;
+        }
+
+        .artwork-card:hover img {
+            transform: scale(1.03);
+            opacity: 0.9;
+        }
+
         /* Text overlay on top of images */
-        .overlay-text { position: absolute; bottom: 20px; left: 20px; color: #ffffff; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; background: rgba(0,0,0,0.5); padding: 5px 10px; border-radius: 2px; }
+        .card-title { 
+            position: absolute; 
+            bottom: 25px; 
+            left: 25px; 
+            color: #ffffff; 
+            font-size: 1rem; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            letter-spacing: 1.5px; 
+            z-index: 2; 
+            text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.8);
+            pointer-events: none;
+            text-align: left;
+        }
 
-        /* --- Footer Section Matching Your Image --- */
-        footer { margin-top: auto; width: 100%; max-width: 1200px; margin-left: auto; margin-right: auto; padding: 80px 0 30px 0; border-top: 1px solid #111111; }
+        /* Responsive Mobile Layout */
+        @media (max-width: 768px) { 
+            .portfolio-grid, 
+            .portfolio-grid.reverse { 
+                grid-template-columns: 1fr; 
+            } 
+            .card-title {
+                font-size: 0.85rem;
+                bottom: 15px;
+                left: 15px;
+            }
+        }
+
+        /* Footer Section */
+        footer { margin-top: auto; width: 100%; max-width: 1400px; margin-left: auto; margin-right: auto; padding: 80px 0 30px 0; border-top: 1px solid #111111; }
         .footer-main { display: flex; justify-content: space-between; align-items: flex-start; text-align: left; margin-bottom: 60px; }
         @media (max-width: 600px) { .footer-main { flex-direction: column; gap: 40px; text-align: center; align-items: center; } }
         
@@ -72,7 +127,7 @@
         .footer-links a { color: #ffffff; text-decoration: none; font-size: 0.9rem; font-weight: 300; letter-spacing: 0.5px; }
         .footer-links a:hover { color: #888888; }
         
-        .footer-brand { font-size: 1.1rem; font-weight: 300; letter-spacing: 1px; color: #ffffff; padding-right: 120px; } /* Pushes center name slightly right to visually balance links */
+        .footer-brand { font-size: 1.1rem; font-weight: 300; letter-spacing: 1px; color: #ffffff; padding-right: 120px; }
         @media (max-width: 600px) { .footer-brand { padding-right: 0; } }
         
         .footer-copyright { font-size: 0.7rem; color: #555555; letter-spacing: 0.5px; margin-top: 20px; }
@@ -80,118 +135,109 @@
 </head>
 <body>
 
-    <!-- Clickable Hamburger Menu Component -->
+    <!-- Menu Icon -->
     <div class="menu-icon" onclick="toggleMenu()">
         <div></div>
         <div></div>
         <div></div>
     </div>
 
-    <!-- Navigation Panel Links -->
+    <!-- Navigation Panel -->
     <nav id="sidebar">
-        <a href="#">Portfolio</a>
+        <a href="index.html">Portfolio</a>
         <a href="#">About</a>
         <a href="#">Contact</a>
     </nav>
 
-    
+    <!-- Page Header -->
     <header>
         <p class="small-tag">Portfolio of</p>
         <h1>Haritini Ilioniu</h1>
         <p class="section-title">Sculptures 2021- 2026</p>
     </header>
 
-    <!-- Visual Portfolio Image Container: Sculptures -->
-       <!-- Unified Visual Portfolio Image Container -->
-    <main class="portfolio-grid">
-        <main class="portfolio-container">
+    <!-- Visual Portfolio Masonry Container -->
+    <main class="portfolio-container">
 
-    <!-- Row 1: Big Left, Two Small Right -->
-    <div class="portfolio-grid">
-        <a href="metanoia.html" class="artwork-card wide">
-            <img src="metanoia.jpg" alt="Metanoia - Genuflection">
-            <span class="card-title">METANOIA - GENUFLECTION</span>
-        </a>
-        <div class="stacked-column">
-            <a href="karpos.html" class="artwork-card">
-                <img src="Karpos.jpg" alt="Karpos - Sporos - Seed">
-                <span class="card-title">KARPOS - SPOROS - SEED</span>
+        <!-- Row 1: Big Left, Two Small Right -->
+        <div class="portfolio-grid">
+            <a href="metanoia.html" class="artwork-card wide">
+                <img src="metanoia.jpg" alt="Metanoia - Genuflection">
+                <span class="card-title">METANOIA - GENUFLECTION</span>
             </a>
-            <a href="Germoglio.html" class="artwork-card">
-                <img src="Germoglio.jpg" alt="Germoglio - Sprout">
-                <span class="card-title">GERMOGLIO - SPROUT</span>
+            <div class="stacked-column">
+                <a href="karpos.html" class="artwork-card">
+                    <img src="Karpos.jpg" alt="Karpos - Sporos - Seed">
+                    <span class="card-title">KARPOS - SPOROS - SEED</span>
+                </a>
+                <a href="germoglio.html" class="artwork-card">
+                    <img src="Germoglio.jpg" alt="Germoglio - Sprout">
+                    <span class="card-title">GERMOGLIO - SPROUT</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Row 2: Two Small Left, Big Right -->
+        <div class="portfolio-grid reverse">
+            <div class="stacked-column">
+                <a href="glove.html" class="artwork-card">
+                    <img src="Glove3.jpg" alt="Glove">
+                    <span class="card-title">GLOVE</span>
+                </a>
+                <a href="isorropia.html" class="artwork-card">
+                    <img src="Isorropia.jpg" alt="Isorropia - Equilibrium">
+                    <span class="card-title">ISORROPIA - EQUILIBRIUM</span>
+                </a>
+            </div>
+            <a href="wooden_blocks.html" class="artwork-card wide">
+                <img src="wooden_blocks.JPG" alt="Wooden Blocks">
+                <span class="card-title">WOODEN BLOCKS</span>
             </a>
         </div>
-    </div>
 
-    <!-- Row 2: Two Small Left, Big Right -->
-    <div class="portfolio-grid reverse">
-        <div class="stacked-column">
-            <a href="glove.html" class="artwork-card">
-                <img src="Glove3.jpg" alt="Glove">
-                <span class="card-title">GLOVE</span>
+        <!-- Row 3: Big Left, Small Right -->
+        <div class="portfolio-grid">
+            <a href="katharsis.html" class="artwork-card wide">
+                <img src="katharsis.jpg" alt="Katharsis">
+                <span class="card-title">KATHARSIS</span>
             </a>
-            <a href="isorropia.html" class="artwork-card">
-                <img src="Isorropia.jpg" alt="Isorropia - Equilibrium">
-                <span class="card-title">ISORROPIA - EQUILIBRIUM</span>
+            <a href="work-in-progress.html" class="artwork-card">
+                <img src="wood_carving.jpg" alt="Work in Progress">
+                <span class="card-title">WORK IN PROGRESS</span>
             </a>
         </div>
-        <a href="wooden_blocks.html" class="artwork-card wide">
-            <img src="wooden_blocks.JPG" alt="Wooden Blocks">
-            <span class="card-title">WOODEN BLOCKS</span>
-        </a>
-    </div>
 
-    <!-- Row 3: Big Left, Small Right -->
-    <div class="portfolio-grid">
-        <a href="katharsis.html" class="artwork-card wide">
-            <img src="katharsis.jpg" alt="Katharsis">
-            <span class="card-title">Katharsis</span>
-        </a>
-        <a href="work-in-progress.html" class="artwork-card">
-            <img src="wood_carving.jpg" alt="Work in Progress">
-            <span class="card-title">WORK IN PROGRESS</span>
-        </a>
-    </div>
+    </main>
 
-</main>
-
-
-    <!-- Footer Element -->
+    <!-- Footer -->
     <footer>
         <div class="footer-main">
             <div class="footer-links">
-                <a href="#">Portfolio</a>
+                <a href="index.html">Portfolio</a>
                 <a href="#">About</a>
                 <a href="#">Contact</a>
             </div>
             <div class="footer-brand">
                 Haritini
             </div>
-            <div></div> <!-- Empty flex item to anchor layout spacing -->
+            <div></div>
         </div>
         <p class="footer-copyright">2026. All rights reserved.</p>
     </footer>
 
-    <!-- Interactive Navigation Control Script -->
+    <!-- Interactive Script -->
     <script>
         function toggleMenu() {
             document.getElementById('sidebar').classList.toggle('open');
         }
-        // Blocks right-clicking to prevent "Save Image As..."
-document.addEventListener('contextmenu', (e) => {
-    if (e.target.tagName === 'IMG') {
-        e.preventDefault();
-    }
-});
 
-// Blocks dragging images directly to the desktop or browser tabs
-document.addEventListener('dragstart', (e) => {
-    if (e.target.tagName === 'IMG') {
-        e.preventDefault();
-    }
-});
-
+        // Image protection
+        document.addEventListener('contextmenu', (e) => {
+            if (e.target.tagName === 'IMG') e.preventDefault();
+        });
+        document.addEventListener('dragstart', (e) => {
+            if (e.target.tagName === 'IMG') e.preventDefault();
+        });
     </script>
 
 </body>
