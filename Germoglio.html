@@ -477,71 +477,40 @@
         <p class="footer-copyright">2026. All rights reserved.</p>
     </footer>
 
-    <!-- Full-Screen Interactive Lightbox Overlay Panel -->
-    <div id="lightboxOverlay" class="lightbox">
-        <span class="close-btn" onclick="closeLightbox()">&times;</span>
-        <span class="arrow-btn prev-btn" onclick="changeImage(-1)">&#10094;</span>
-        <img id="lightboxImg" src="" alt="Expanded View">
-        <span class="arrow-btn next-btn" onclick="changeImage(1)">&#10095;</span>
-    </div>
+    function openLightbox(index) {
+    currentImgIndex = index;
+    const lightbox = document.getElementById("lightboxOverlay");
+    const lightboxImg = document.getElementById("lightboxImg");
+    
+    lightboxImg.src = galleryImages[currentImgIndex];
+    lightbox.classList.add("active");
 
-    <!-- Toggle Action Menu Drawer and Lightbox Script -->
-    <script>
-        function toggleMenu() { 
-            document.getElementById('sidebar').classList.toggle('open'); 
+    // Triggers native browser full-screen mode
+    if (lightbox.requestFullscreen) {
+        lightbox.requestFullscreen();
+    } else if (lightbox.webkitRequestFullscreen) { /* Safari & iOS */
+        lightbox.webkitRequestFullscreen();
+    } else if (lightbox.msRequestFullscreen) { /* IE11 */
+        lightbox.msRequestFullscreen();
+    }
+}
+
+function closeLightbox() {
+    const lightbox = document.getElementById("lightboxOverlay");
+    lightbox.classList.remove("active");
+
+    // Exits full-screen mode if currently active
+    if (document.fullscreenElement || document.webkitFullscreenElement) {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) { /* Safari */
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { /* IE11 */
+            document.msExitFullscreen();
         }
-
-        let currentImgIndex = 0;
-        let galleryImages = [];
-
-        document.addEventListener("DOMContentLoaded", () => {
-            const imagesInGallery = document.querySelectorAll(".gallery-card img");
-            galleryImages = Array.from(imagesInGallery).map(img => img.src);
-            
-            imagesInGallery.forEach((img, index) => {
-                img.style.cursor = "pointer";
-                img.onclick = () => openLightbox(index);
-            });
-        });
-
-        function openLightbox(index) {
-            currentImgIndex = index;
-            document.getElementById("lightboxImg").src = galleryImages[currentImgIndex];
-            document.getElementById("lightboxOverlay").classList.add("active");
-        }
-
-        function closeLightbox() {
-            document.getElementById("lightboxOverlay").classList.remove("active");
-        }
-
-        function changeImage(direction) {
-            currentImgIndex += direction;
-            if (currentImgIndex >= galleryImages.length) currentImgIndex = 0;
-            if (currentImgIndex < 0) currentImgIndex = galleryImages.length - 1;
-            document.getElementById("lightboxImg").src = galleryImages[currentImgIndex];
-        }
-
-        document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape") closeLightbox();
-        });
-
-        // Blocks right-clicking to prevent "Save Image As..."
-        document.addEventListener('contextmenu', (e) => {
-            if (e.target.tagName === 'IMG') {
-                e.preventDefault();
-            }
-        });
-
-        // Blocks dragging images directly to the desktop or browser tabs
-        document.addEventListener('dragstart', (e) => {
-            if (e.target.tagName === 'IMG') {
-                e.preventDefault();
-            }
-        });
+    }
+}
     </script>
 
-</body>
-</html>
-    </script>
 </body>
 </html>
