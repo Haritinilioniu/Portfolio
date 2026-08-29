@@ -61,7 +61,7 @@
         .detail-label { color: #aaaaaa; font-weight: 300; }
         .detail-value { color: #ffffff; font-weight: 600; text-align: right; }
 
-        /* Artwork Showcase Image Gallery */
+        /* --- RESTORED INITIAL IMAGE FRAMES --- */
         .image-gallery { 
             max-width: 1200px; 
             margin: 0 auto 100px auto; 
@@ -71,30 +71,32 @@
             gap: 30px; 
         }
 
-        .gallery-card {
-            background: #000000;
-            overflow: hidden;
-            height: 380px; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .artwork-card { 
+            position: relative; 
+            background: #111111; 
+            border: 1px solid #222222; 
+            border-radius: 4px; 
+            overflow: hidden; 
+            aspect-ratio: 16/9; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
         }
 
-        .gallery-card img { 
+        .artwork-card img { 
             width: 100%; 
             height: 100%; 
-            display: block; 
             object-fit: cover; 
             cursor: pointer;
             transition: transform 0.3s ease, opacity 0.2s ease;
         }
 
-        .gallery-card img:hover {
+        .artwork-card img:hover {
             transform: scale(1.02);
             opacity: 0.9;
         }
 
-        /* Lightbox Overlay Styles */
+        /* Full Screen Lightbox Overlay */
         .lightbox {
             display: none;
             position: fixed;
@@ -213,12 +215,12 @@
         </div>
     </section>
 
-    <!-- Interactive Gallery Images -->
+    <!-- Interactive Gallery Images (Uses Initial Frame Layout) -->
     <main class="image-gallery">
-        <div class="gallery-card">
+        <div class="artwork-card">
             <img src="Germoglio.jpg" alt="Germoglio - Sprout View 1">
         </div>
-        <div class="gallery-card">
+        <div class="artwork-card">
             <img src="germoglio_det.jpg" alt="Germoglio - Sprout View 2">
         </div>
     </main>
@@ -257,7 +259,7 @@
         let galleryImages = [];
 
         document.addEventListener("DOMContentLoaded", () => {
-            const imagesInGallery = document.querySelectorAll(".gallery-card img");
+            const imagesInGallery = document.querySelectorAll(".artwork-card img");
             galleryImages = Array.from(imagesInGallery).map(img => img.src);
             
             imagesInGallery.forEach((img, index) => {
